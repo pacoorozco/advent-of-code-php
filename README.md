@@ -1,6 +1,6 @@
 # Advent Of Code (PHP)
 
-![Github](https://github.com/pacoorozco/advent-of-code-php/workflows/Test/badge.svg)
+[![Test](https://github.com/pacoorozco/advent-of-code-php/actions/workflows/test.yml/badge.svg)](https://github.com/pacoorozco/advent-of-code-php/actions/workflows/test.yml)
 ![php](https://img.shields.io/github/languages/top/pacoorozco/advent-of-code-php?style=flat-square)
 
 ## Installation
