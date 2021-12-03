@@ -29,6 +29,12 @@ class Puzzle extends AbstractPuzzle
 
     public function part2(array $input = []): string
     {
-        return 'TODO';
+        $slidingWindow = [];
+
+        for ($i = 0; $i < count($input) - 2; $i++) {
+            $slidingWindow[] = $input[$i] + $input[$i + 1] + $input[$i + 2];
+        }
+
+        return (string) $this->countMeasurement($slidingWindow);
     }
 }

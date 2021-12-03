@@ -18,6 +18,12 @@ class PuzzleTest extends TestCase
         $this->assertEquals(7, $this->puzzle->part1($input));
     }
 
+    public function testPart2(): void
+    {
+        $input = [199, 200, 208, 210, 200, 207, 240, 269, 260, 263];
+        $this->assertEquals(5, $this->puzzle->part2($input));
+    }
+
     protected function setUp(): void
     {
         $this->puzzle = new Puzzle();
