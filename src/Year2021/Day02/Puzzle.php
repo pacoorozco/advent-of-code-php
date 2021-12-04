@@ -19,6 +19,12 @@ class Puzzle extends AbstractPuzzle
 
     public function part2(array $input = []): string
     {
-        return 'TODO';
+        $submarine = new Submarine();
+
+        foreach ($input as $command) {
+            $submarine->moveWithAim($command);
+        }
+
+        return $submarine->getX() * $submarine->getDepth();
     }
 }

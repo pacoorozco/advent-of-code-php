@@ -20,7 +20,8 @@ class PuzzleTest extends TestCase
 
     public function testPart2(): void
     {
-        $this->assertTrue(true);
+        $input = ['forward 5', 'down 5', 'forward 8', 'up 3', 'down 8', 'forward 2'];
+        $this->assertEquals(900, $this->puzzle->part2($input));
     }
 
     protected function setUp(): void
