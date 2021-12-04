@@ -27,7 +27,7 @@ $ bin/console puzzle:exec [-y|--year YEAR] [-d|--day DAY] [-p|--puzzle PUZZLE]
 $ vendor/bin/phpunit --testdox tests/<YEAR>/<DAY>
 ```
 
-### Create a new Puzzle
+### Creating a new Puzzle
 
 ```sh
 $ bin/newPuzzle.sh [-y|--year YEAR] [-d|--day DAY]
