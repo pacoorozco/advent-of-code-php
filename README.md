@@ -30,5 +30,5 @@ $ vendor/bin/phpunit --testdox tests/<YEAR>/<DAY>
 ### Create a new Puzzle
 
 ```sh
-$ bin/newPuzzle.sh -h
+$ bin/newPuzzle.sh [-y|--year YEAR] [-d|--day DAY]
 ```
