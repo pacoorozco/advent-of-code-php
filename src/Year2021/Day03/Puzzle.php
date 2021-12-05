@@ -38,6 +38,11 @@ class Puzzle extends AbstractPuzzle
 
     public function part1(array $input = []): string
     {
+        return (string) $this->powerConsumption($input);
+    }
+
+    private function powerConsumption(array $input): int
+    {
         $gammaRate = '';
         $epsilonRate = '';
 
@@ -51,7 +56,7 @@ class Puzzle extends AbstractPuzzle
         $gamma = bindec($gammaRate);
         $epsilon = bindec($epsilonRate);
 
-        return (string) ($gamma * $epsilon);
+        return ($gamma * $epsilon);
     }
 
     private function getCommonBit(array $array, int $column): int
