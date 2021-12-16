@@ -15,7 +15,8 @@ class Puzzle extends AbstractPuzzle
 
         if ($file = fopen($this->getInputPath(), 'r')) {
             while (($line = fgets($file)) !== false) {
-                $array[] = $this->stringToArray($line);
+                //$array[] = $this->stringToArray($line);
+                $array[] = $line;
             }
             fclose($file);
         }
@@ -59,15 +60,70 @@ class Puzzle extends AbstractPuzzle
         return ($gamma * $epsilon);
     }
 
-    private function getCommonBit(array $array, int $column): int
+    public function getCommonBit(array $array, int $column): int
     {
-        $sum = array_sum(array_column($array, $column));
+        $numberOfOnes = 0;
+        $numberOfZeros = 0;
+        foreach ($array as $line) {
+            if ($line[$column] == 1) {
+                $numberOfOnes++;
+            } else {
+                $numberOfZeros++;
+            }
+        }
+        if ($numberOfOnes >= $numberOfZeros) {
+            return '1';
+        }
+        return '0';
 
-        return intval($sum > count($array) / 2);
     }
 
     public function part2(array $input = []): string
     {
-        return 'TODO';
+        return (string) $this->lifeSupportRating($input);
+    }
+
+    private function lifeSupportRating(array $input): int
+    {
+        return $this->oxygenGeneratorRating($input) * $this->co2ScrubberRating($input);
+    }
+
+    public function co2ScrubberRating(array $input): int
+    {
+        $oxygenValues = $input;
+
+        for ($column = 0; count($oxygenValues) != 1; $column++) {
+            $mostCommonBit = $this->getCommonBit($oxygenValues, $column) == 1 ? 0 : 1;
+            $oxygenValues = $this->selectLinesWithValueInColumn($oxygenValues, $mostCommonBit, $column);
+        }
+
+        return bindec($oxygenValues[0]);
+    }
+
+    public function selectLinesWithValueInColumn(array $input, int $value, int $column): array
+    {
+        if (count($input) == 1) {
+            return $input;
+        }
+
+        $selectedValues = [];
+        foreach ($input as $line) {
+            if ($line[$column] == $value) {
+                $selectedValues[] = $line;
+            }
+        }
+        return $selectedValues;
+    }
+
+    public function oxygenGeneratorRating(array $input): int
+    {
+        $oxygenValues = $input;
+
+        for ($column = 0; count($oxygenValues) != 1; $column++) {
+            $mostCommonBit = $this->getCommonBit($oxygenValues, $column);
+            $oxygenValues = $this->selectLinesWithValueInColumn($oxygenValues, $mostCommonBit, $column);
+        }
+
+        return bindec($oxygenValues[0]);
     }
 }
